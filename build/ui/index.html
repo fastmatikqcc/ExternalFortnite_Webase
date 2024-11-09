@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRAFTNITE PRIVATE</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1b1b1f;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Container */
+        .container {
+            max-width: 700px;
+            width: 100%;
+            padding: 20px;
+            background-color: #25252a;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* Banner Logo */
+        .banner-logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(13, 110, 253, 0.4);
+            transition: transform 0.1s ease-in-out;
+        }
+
+        /* Tab Header */
+        .tab-header {
+            display: inline-block;
+            background-color: #33353b;
+            color: #e0e0e0;
+            padding: 12px 18px;
+            border-radius: 12px 12px 0 0;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-header.active {
+            background-color: #0d6efd;
+            color: #ffffff;
+        }
+
+        .tab-header:hover:not(.active) {
+            background-color: #3b3b3f;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background-color: #2c2d33;
+            padding: 20px;
+            border-radius: 0 0 12px 12px;
+            border-top: 1px solid #444;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Button Styling */
+    button {
+        background-color: #0d6efd;
+        border: none;
+        color: #ffffff;
+        padding: 8px 16px; /* Adjust padding for a more compact button */
+        font-size: 14px; /* Set a smaller font size */
+        margin: 6px 2px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #0b5ed7;
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+	
+
+
+    button:active {
+        transform: scale(0.95); /* Slight shrink effect when clicked */
+    }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Range Slider Styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background-color: #444;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0d6efd;
+            cursor: pointer;
+        }
+
+        /* Range Slider Value Display */
+        #fovValue, #smoothValue {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #0d6efd;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner Logo -->
+        <h1 class="banner-logo" id="logo">KRAFTNITE</h1>
+
+        <div class="tab-header active" onclick="openTab(event, 'aim')">AIMBOT</div>
+        <div class="tab-header" onclick="openTab(event, 'esp')">VISUALS</div>
+        <div class="tab-header" onclick="openTab(event, 'misc')">MISC</div>
+
+        <!-- Content for each tab -->
+        <div id="aim" class="tab-content active">
+
+            <button id="aimbotButton"><span></span>Enable Aimbot</button>
+            <button id="prediction"><span></span>Enable Prediction</button>
+            <button id="fovCircleButton"><span></span>Enable FOV Circle</button>
+            <button id="triggerbot"><span></span>Enable Triggerbot</button>
+            <br><br>
+            <label for="fovSlider">FOV:</label>
+            <input type="range" id="fovSlider" name="fovSlider" min="10" max="300" value="0">
+            <span id="fovValue">0</span>
+            <br><br>
+            <label for="smoothSlider">Smooth:</label>
+            <input type="range" id="smoothSlider" name="smoothSlider" min="10" max="100" value="0">
+            <span id="smoothValue">0</span>
+            <br><br>
+            <!-- Key Input for Aimbot -->
+            <button id="aimbotKeyButton"><span></span>Select Aimbot Key</button>
+            <p>Current Key: <span id="aimbotKey">None</span></p>
+        </div>
+
+        <div id="esp" class="tab-content">
+
+            <button id="boxEspButton"><span></span>Enable Box ESP</button>
+            <button id="skeletonEspButton"><span></span>Enable Skeleton</button>
+            <button id="headEspButton"><span></span>Enable Head Circle</button>
+            <button id="outline"><span></span>Enable Outline</button>
+            <button id="ranked"><span></span>Enable Ranked</button>
+            <button id="username"><span></span>Enable Username</button>
+            <button id="snapline"><span></span>Enable Snapline</button>
+            <button id="distance"><span></span>Enable Distance</button>
+            <button id="radaresp"><span></span>Enable Radar ESP</button>
+			<button id="offscreenarrow"><span></span>Enable ScreenArrow</button>
+			    <!-- Color Picker for ESP -->
+    <label for="espColorPicker">ESP Color :</label>
+    <input type="color" id="espColorPicker" value="#00ff00">
+            <br><br>
+            <label for="boxthic">Box thickness:</label>
+            <input type="range" id="boxthic" name="boxthic" min="1" max="5" value="1">
+            <span id="boxvalue">1</span>
+            <br><br>
+            <label for="renderdis">Render Distance:</label>
+            <input type="range" id="renderdis" name="renderdis" min="10" max="275" value="275">
+            <span id="disvalue">0</span>
+            <br><br>
+            <label for="skelthick">Skeleton thickness:</label>
+            <input type="range" id="skelthick" name="skelthick" min="1" max="5" value="1">
+            <span id="skelvalue">1</span>
+            <br><br>
+            <label for="snapthick">Snapline thickness:</label>
+            <input type="range" id="snapthick" name="snapthick" min="1" max="5" value="1">
+            <span id="snapvalue">1</span>
+            <br><br>
+        </div>
+        <div id="misc" class="tab-content">
+ 
+            <button id="vsync"><span></span>Enable Vsync</button>
+            <button id="watermark"><span></span>Enable Watermark</button>
+            <button id="crosshair"><span></span>Enable Crosshair</button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 KRAFTCHEESE. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+	
+        var isBoxEspEnabled = false;
+        var isFovCircleEnabled = false; 
+
+        function openTab(event, tabName) {
+            var i, tabcontent, tabheader;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tabheader = document.getElementsByClassName("tab-header");
+            for (i = 0; i < tabheader.length; i++) {
+                tabheader[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        document.getElementById('crosshair').addEventListener('click', function() {
+            fetch('/enable_crosshair', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('crosshair enabled:', data);
+              });
+        });
+
+        document.getElementById('vsync').addEventListener('click', function() {
+            fetch('/enable_vsync', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('vsync enabled:', data);
+              });
+        });
+
+        document.getElementById('watermark').addEventListener('click', function() {
+            fetch('/enable_watermark', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('watermark enabled:', data);
+              });
+        });
+
+        document.getElementById('snapthick').addEventListener('input', function() {
+            var value = parseInt(this.value, 10);  
+            document.getElementById('snapvalue').textContent = value;
+            fetch('/snapthickness', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ snapthick: value }) 
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Snapline thickness set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting snapline thickness:', error);
+              });
+        });
+
+        document.getElementById('skelthick').addEventListener('input', function() {
+            var value = parseInt(this.value, 10); 
+            document.getElementById('skelvalue').textContent = value;
+            fetch('/skelthickness', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ skelthick: value })  
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Box thickness set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting box thickness:', error);
+              });
+        });
+
+        document.getElementById('boxthic').addEventListener('input', function() {
+            var value = parseInt(this.value, 10);  
+            document.getElementById('boxvalue').textContent = value;
+            fetch('/boxthickness', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ boxthic: value })  
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Box thickness set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting box thickness:', error);
+              });
+        });
+
+        document.getElementById('renderdis').addEventListener('input', function() {
+            var value = parseInt(this.value, 10);  
+            document.getElementById('disvalue').textContent = value;
+            fetch('/renderdistance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ distance: value })  
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Distance set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting distance:', error);
+              });
+        });
+
+        document.getElementById('fovCircleButton').addEventListener('click', function() {
+            fetch('/enable_fov', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('fovv enabled:', data);
+              });
+        });
+
+        document.getElementById('distance').addEventListener('click', function() {
+            fetch('/distance', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Distance enabled:', data);
+              });
+        });
+
+        document.getElementById('username').addEventListener('click', function() {
+            fetch('/username', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Username enabled:', data);
+              });
+        });
+
+        document.getElementById('snapline').addEventListener('click', function() {
+            fetch('/snapline', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Snapline enabled:', data);
+              });
+        });
+
+        document.getElementById('ranked').addEventListener('click', function() {
+            fetch('/ranked', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Ranked enabled:', data);
+              });
+        });
+
+        document.getElementById('outline').addEventListener('click', function() {
+            fetch('/outline', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Outline enabled:', data);
+              });
+        });
+
+        document.getElementById('aimbotButton').addEventListener('click', function() {
+            fetch('/enable_aimbot', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Aimbot enabled:', data);
+              });
+        });
+
+        document.getElementById('headEspButton').addEventListener('click', function() {
+            fetch('/enable_head', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Head enabled:', data);
+              });
+        });
+
+        document.getElementById('prediction').addEventListener('click', function() {
+            fetch('/enable_prediction', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Prediction enabled:', data);
+              });
+        });
+
+        document.getElementById('fovSlider').addEventListener('input', function() {
+            var value = parseInt(this.value, 10);  
+            document.getElementById('fovValue').textContent = value;
+            fetch('/set_fov', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ fov: value })
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('FOV set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting FOV:', error);
+              });
+        });
+
+        document.getElementById('smoothSlider').addEventListener('input', function() {
+            var value = parseInt(this.value, 10);  
+            document.getElementById('smoothValue').textContent = value;
+            fetch('/set_smooth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ smooth: value })  
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Smooth set to:', value, data);
+              }).catch(error => {
+                  console.error('Error setting smooth:', error);
+              });
+        });
+
+        document.getElementById('fovCircleButton').addEventListener('click', function() {
+            isFovCircleEnabled = !isFovCircleEnabled;
+
+            this.textContent = isFovCircleEnabled ? 'Disable FOV Circle' : 'Enable FOV Circle';
+
+            fetch('/set_fov_circle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fov_circle: isFovCircleEnabled
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('FOV Circle state updated:', data);
+              }).catch(error => {
+                  console.error('Error updating FOV Circle state:', error);
+              });
+        });
+
+        document.getElementById('skeletonEspButton').addEventListener('click', function() {
+            fetch('/enable_skeleton', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Skeleton enabled:', data);
+              });
+        });
+
+        document.getElementById('boxEspButton').addEventListener('click', function() {
+            isBoxEspEnabled = !isBoxEspEnabled;
+
+            this.textContent = isBoxEspEnabled ? 'Disable Box ESP' : 'Enable Box ESP';
+
+            fetch('/set_box_esp_flags', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    box_esp: isBoxEspEnabled,
+                    enable_esp: isBoxEspEnabled
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Box ESP flags updated:', data);
+
+                  if (isBoxEspEnabled) {
+                      fetch('/draw_box_esp', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({})
+                      }).then(response => response.json())
+                        .then(data => {
+                            console.log('Box ESP drawn:', data);
+                        }).catch(error => {
+                            console.error('Error drawing Box ESP:', error);
+                        });
+                  } else {
+                      fetch('/remove_box_esp', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' }
+                      }).then(response => response.json())
+                        .then(data => {
+                            console.log('Box ESP removed:', data);
+                        }).catch(error => {
+                            console.error('Error removing Box ESP:', error);
+                        });
+                  }
+              }).catch(error => {
+                  console.error('Error updating Box ESP flags:', error);
+              });
+        });
+    </script>
+</body>
+</html>
