@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="driver.cpp">
+      <Filter>driver</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="fadeinout.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="menuproperties.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aimbot.cpp" />
+    <ClInclude Include="cache_helper.hpp" />
+    <ClInclude Include="cheat-func.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="crypter.h" />
+    <ClInclude Include="defs.h" />
+    <ClInclude Include="ex.hpp" />
+    <ClInclude Include="functions.hpp" />
+    <ClInclude Include="globals.hpp" />
+    <ClInclude Include="hider.h" />
+    <ClInclude Include="hijack.hpp" />
+    <ClInclude Include="httplib.h" />
+    <ClInclude Include="import.hpp" />
+    <ClInclude Include="imports.h" />
+    <ClInclude Include="includes.hpp" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="keybind.hpp" />
+    <ClInclude Include="helper.hpp" />
+    <ClInclude Include="lazyyyy.hpp" />
+    <ClInclude Include="prediction.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="spoofing.hpp" />
+    <ClInclude Include="startup.hpp" />
+    <ClInclude Include="ue.hpp" />
+    <ClInclude Include="cache.hpp" />
+    <ClInclude Include="render.hpp" />
+    <ClInclude Include="utildriver.hpp" />
+    <ClInclude Include="vectors.hpp" />
+    <ClInclude Include="xorst.h" />
+    <ClInclude Include="offsets.hpp">
+      <Filter>offset</Filter>
+    </ClInclude>
+    <ClInclude Include="driver.h">
+      <Filter>driver</Filter>
+    </ClInclude>
+    <ClInclude Include="module_spoofing.h">
+      <Filter>driver</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui.hpp">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="fadeinout.hpp">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="font.hpp">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="fontawesome.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="fortnitefont.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="lightfont.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="menucol.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="particles.hpp">
+      <Filter>imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ImGui\d3d11.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="offset">
+      <UniqueIdentifier>{30aa2c27-abdc-4fc8-8f66-c1d0338a84cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="driver">
+      <UniqueIdentifier>{bf4dbccc-63d4-46df-833c-a7cbab0305b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{4758c67f-6043-4ee2-8354-00cc91480dcd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
